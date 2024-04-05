@@ -8,11 +8,19 @@ import { environment } from 'src/environment/environment';
 export class UserService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  registerUser(userData: any) {
+  registerUser(user: any, password: any) {
+    const userData = {
+      user: user,
+      password: password,
+    };
     return this.httpClient.post(environment.apiUserRegiser, userData);
   }
 
-  loginUser(userData: any) {
+  loginUser(user: any, password: any) {
+    const userData = {
+      user: user,
+      password: password,
+    };
     return this.httpClient.post(environment.apiUserLogin, userData);
   }
 
