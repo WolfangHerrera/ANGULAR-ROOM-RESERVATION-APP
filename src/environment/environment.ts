@@ -1,9 +1,9 @@
+const url = 'http://localhost:8083/';
 export const environment = {
-  url: 'http://localhost:8083/',
-  apiUserRegiser: '${this.url}' + 'registerUser',
-  apiUserLogin: '${this.url}' + 'loginUser',
-  apiUserValidate: '${this.url}' + 'validateSession',
-  apiReservationMake: '${this.url}' + 'makeReservation',
-  apiReservationGet: '${this.url}' + 'getReservation',
-  apiReservationCancel: '${this.url}' + 'cancelReservation',
+  apiUserRegiser: url + 'registerUser',
+  apiUserLogin: url + 'loginUser',
+  apiUserValidate: url + 'validateSession',
+  apiReservationMake: url + 'makeReservation',
+  apiReservationGet: url + 'getReservation',
+  apiReservationCancel: url + 'cancelReservation',
 };
