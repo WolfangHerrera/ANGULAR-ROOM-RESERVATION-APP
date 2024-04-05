@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
 
 @Injectable({
@@ -18,23 +18,5 @@ export class UserService {
 
   validateSession(userData: any) {
     return this.httpClient.post(environment.apiUserValidate, userData);
-  }
-
-  makeReservation(reservationData: any) {
-    return this.httpClient.post(
-      environment.apiReservationMake,
-      reservationData
-    );
-  }
-
-  getReservation(reservationData: any) {
-    return this.httpClient.post(environment.apiReservationGet, reservationData);
-  }
-
-  cancelReservation(reservationData: any) {
-    return this.httpClient.post(
-      environment.apiReservationCancel,
-      reservationData
-    );
   }
 }
