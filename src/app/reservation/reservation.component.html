@@ -48,18 +48,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>APRIL 1, 2024</td>
-                        <td>16:00</td>
-                        <td>ACTIVE</td>
-                        <td><button type="button" class="btn btn-sm btn-outline-danger">CANCEL</button></td>
-                    </tr>
-                    <tr>
-                        <td>APRIL 1, 2024</td>
-                        <td>17:00</td>
-                        <td>CANCELED</td>
-                        <td><button disabled type="button" class="btn btn-sm btn-outline-danger">CANCEL</button></td>
-                    </tr>
+                    <ng-container *ngFor="let item of dataUserReservation">
+                        <tr>
+                            <td>{{item.date}}</td>
+                            <td>{{item.time}}:00</td>
+                            <td>{{item.status.toUpperCase()}}</td>
+                            <td><button [disabled]="!item.status" type="button"
+                                    class="btn btn-sm btn-outline-danger">CANCEL</button></td>
+                        </tr>
+                    </ng-container>
                 </tbody>
             </table>
         </div>

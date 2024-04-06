@@ -15,12 +15,13 @@ export class ReservationService {
     );
   }
 
-  getReservation(reservationData: any) {
-    return this.httpClient.post(environment.apiReservationGet, reservationData);
+  getReservation(user: any) {
+    const userData = { user: user };
+    return this.httpClient.post(environment.apiReservationGet, userData);
   }
 
   cancelReservation(reservationData: any) {
-    return this.httpClient.post(
+    return this.httpClient.put(
       environment.apiReservationCancel,
       reservationData
     );
