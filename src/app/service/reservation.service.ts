@@ -20,7 +20,12 @@ export class ReservationService {
     return this.httpClient.post(environment.apiReservationGet, userData);
   }
 
-  cancelReservation(reservationData: any) {
+  cancelReservation(date: any, time: any, user: any) {
+    const reservationData = {
+      date: date,
+      time: time,
+      user: user,
+    };
     return this.httpClient.put(
       environment.apiReservationCancel,
       reservationData

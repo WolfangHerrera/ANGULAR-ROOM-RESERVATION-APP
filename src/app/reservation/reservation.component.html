@@ -9,8 +9,8 @@
                         <span class="input-group-text" id="inputGroup-sizing-default"><i
                                 class="fa-solid fa-calendar-days"></i></span>
                         <select class="form-select" aria-label="Default select example">
-                            <option selected>APRIL 1, 2024 (TOMORROW)</option>
-                            <option value="1">APRIL 2, 2024</option>
+                            <option selected>{{tomorrowFormatted}}</option>
+                            <option value="1">{{dayAfterTomorrowFormatted}}</option>
                         </select>
                     </div>
                 </div>
@@ -53,8 +53,8 @@
                             <td>{{item.date}}</td>
                             <td>{{item.time}}:00</td>
                             <td>{{item.status.toUpperCase()}}</td>
-                            <td><button [disabled]="!item.status" type="button"
-                                    class="btn btn-sm btn-outline-danger">CANCEL</button></td>
+                            <td><button (click)="cancelReservation(item)" [disabled]="item.status === 'canceled'"
+                                    type="button" class="btn btn-sm btn-outline-danger">CANCEL</button></td>
                         </tr>
                     </ng-container>
                 </tbody>
