@@ -17,7 +17,8 @@ interface Reservation {
   styleUrls: ['./reservation.component.scss'],
 })
 export class ReservationComponent implements OnInit {
-  selectedValue = 'tomorrowFormatted';
+  isHandleSelectionEnabled = true;
+  selectedValue: string | any;
   hoursRange: number[] = Array.from(
     { length: 22 - 6 },
     (_, index) => index + 6
@@ -32,6 +33,16 @@ export class ReservationComponent implements OnInit {
   dayAfterTomorrow = new Date();
   dayAfterTomorrowFormatted: any;
   constructor(private readonly request: ReservationService) {
+    this.tomorrow = addDays(new Date(), 1);
+    this.tomorrowFormatted = format(
+      this.tomorrow,
+      'MMMM d, yyyy'
+    ).toUpperCase();
+    this.dayAfterTomorrow = addDays(new Date(), 2);
+    this.dayAfterTomorrowFormatted = format(
+      this.dayAfterTomorrow,
+      'MMMM d, yyyy'
+    ).toUpperCase();
     this.user = localStorage.getItem('user') || '';
     if (this.user) {
       this.request.getReservation(this.user).subscribe((data: any) => {
@@ -44,16 +55,7 @@ export class ReservationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tomorrow = addDays(new Date(), 1);
-    this.tomorrowFormatted = format(
-      this.tomorrow,
-      'MMMM d, yyyy'
-    ).toUpperCase();
-    this.dayAfterTomorrow = addDays(new Date(), 2);
-    this.dayAfterTomorrowFormatted = format(
-      this.dayAfterTomorrow,
-      'MMMM d, yyyy'
-    ).toUpperCase();
+    this.selectedValue = this.tomorrowFormatted;
   }
 
   cancelReservation(itemReservation: Reservation) {
@@ -86,13 +88,19 @@ export class ReservationComponent implements OnInit {
     });
   }
 
-  handleSelectionChange() {
-    this.selectedValue;
+  handleSelectionChange(event: any) {
+    this.selectedValue = event.target.value;
   }
 
-  isHourReserved(hour: number, data: Reservation[]): boolean {
-    return this.dataReservationsTomorrow.some(
-      (item) => parseInt(item.time) === hour
-    );
+  isHourReserved(hour: number): boolean {
+    if (this.selectedValue === this.tomorrowFormatted) {
+      return this.dataReservationsTomorrow.some(
+        (item) => parseInt(item.time) === hour
+      );
+    } else {
+      return this.dataReservationsAfterTomorrow.some(
+        (item) => parseInt(item.time) === hour
+      );
+    }
   }
 }
