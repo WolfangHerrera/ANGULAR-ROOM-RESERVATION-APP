@@ -29,18 +29,22 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-default"><i
                                 class="fa-solid fa-clock"></i></span>
-                        <select class="form-select">
+                        <select class="form-select" name="selectedHour" (change)="handleSelectionTime($event)">
                             <ng-container *ngFor="let hour of hoursRange">
-                                <option [value]="hour" [disabled]="isHourReserved(hour)">
-                                    {{hour}}:00
+                                <option [value]="hour.toString()" [disabled]="isHourReserved(hour.toString())">
+                                    {{ hour }}:00
                                 </option>
                             </ng-container>
                         </select>
 
+
+
                     </div>
                 </div>
                 <div class="d-grid text-center py-3">
-                    <button class="btn btn-primary btn-lg">SAVE RESERVATION</button>
+                    <button [disabled]="disableButtonMakeReservation()" (click)="makeReservation()"
+                        class="btn btn-primary btn-lg">SAVE
+                        RESERVATION</button>
                 </div>
             </form>
         </div>

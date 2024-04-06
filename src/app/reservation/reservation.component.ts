@@ -17,6 +17,7 @@ interface Reservation {
   styleUrls: ['./reservation.component.scss'],
 })
 export class ReservationComponent implements OnInit {
+  selectedHour = '';
   isHandleSelectionEnabled = true;
   selectedValue: string | any;
   hoursRange: number[] = Array.from(
@@ -32,12 +33,14 @@ export class ReservationComponent implements OnInit {
   tomorrowFormatted: any;
   dayAfterTomorrow = new Date();
   dayAfterTomorrowFormatted: any;
+
   constructor(private readonly request: ReservationService) {
     this.tomorrow = addDays(new Date(), 1);
     this.tomorrowFormatted = format(
       this.tomorrow,
       'MMMM d, yyyy'
     ).toUpperCase();
+
     this.dayAfterTomorrow = addDays(new Date(), 2);
     this.dayAfterTomorrowFormatted = format(
       this.dayAfterTomorrow,
@@ -50,12 +53,28 @@ export class ReservationComponent implements OnInit {
         this.dataReservationsTomorrow = data[1];
         this.dataReservationsAfterTomorrow = data[2];
         this.isLoading = true;
+        this.selectedHour = '6';
       });
     }
   }
 
   ngOnInit(): void {
     this.selectedValue = this.tomorrowFormatted;
+  }
+
+  makeReservation() {
+    Swal.fire({
+      title: 'GOOD JOB!',
+      text: 'YOU HAVE REGISTERED SUCCESSFULLY.',
+      icon: 'success',
+      timer: 3000,
+    });
+
+    // this.request
+    //   .cancelReservation(itemReservation.date, itemReservation.time, this.user)
+    //   .subscribe(() => {
+    //     window.location.reload();
+    //   });
   }
 
   cancelReservation(itemReservation: Reservation) {
@@ -90,16 +109,28 @@ export class ReservationComponent implements OnInit {
 
   handleSelectionChange(event: any) {
     this.selectedValue = event.target.value;
+    this.disableButtonMakeReservation();
   }
 
-  isHourReserved(hour: number): boolean {
+  handleSelectionTime(event: any) {
+    this.selectedHour = event.target.value;
+    this.disableButtonMakeReservation();
+  }
+
+  disableButtonMakeReservation() {
+    if (this.isHourReserved(this.selectedHour)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  isHourReserved(hour: string): boolean {
     if (this.selectedValue === this.tomorrowFormatted) {
-      return this.dataReservationsTomorrow.some(
-        (item) => parseInt(item.time) === hour
-      );
+      return this.dataReservationsTomorrow.some((item) => item.time === hour);
     } else {
       return this.dataReservationsAfterTomorrow.some(
-        (item) => parseInt(item.time) === hour
+        (item) => item.time === hour
       );
     }
   }
