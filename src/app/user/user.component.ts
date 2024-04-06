@@ -34,6 +34,7 @@ export class UserComponent {
         .loginUser(this.user, this.password)
         .subscribe((data: any) => {
           if (data && data.status) {
+            localStorage.setItem('user', this.user);
             this.router.navigate(['/reservation']);
           } else {
             Swal.fire({
@@ -59,24 +60,23 @@ export class UserComponent {
       this.request
         .registerUser(this.user, this.password)
         .subscribe((data: any) => {
-          if (data) {
-            if (data.status) {
-              Swal.fire({
-                title: 'GOOD JOB!',
-                text: 'YOU HAVE REGISTERED SUCCESSFULLY.',
-                icon: 'success',
-                timer: 3000,
-              });
-              timer(3000).subscribe(() => {
-                this.router.navigate(['/reservation']);
-              });
-            } else {
-              Swal.fire({
-                icon: 'error',
-                title: 'OOPS...',
-                text: 'VERIFY IF THE USERNAME AND PASSWORD ARE CORRECT.',
-              });
-            }
+          if (data && data.status) {
+            localStorage.setItem('user', this.user);
+            Swal.fire({
+              title: 'GOOD JOB!',
+              text: 'YOU HAVE REGISTERED SUCCESSFULLY.',
+              icon: 'success',
+              timer: 3000,
+            });
+            timer(3000).subscribe(() => {
+              this.router.navigate(['/reservation']);
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'OOPS...',
+              text: 'VERIFY IF THE USERNAME AND PASSWORD ARE CORRECT.',
+            });
           }
         });
     } else {
