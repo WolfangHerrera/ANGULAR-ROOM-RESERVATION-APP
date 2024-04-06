@@ -15,10 +15,13 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-default"><i
                                 class="fa-solid fa-calendar-days"></i></span>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>{{tomorrowFormatted}}</option>
-                            <option value="1">{{dayAfterTomorrowFormatted}}</option>
+                        <select class="form-select" aria-label="Default select example" [(ngModel)]="selectedValue"
+                            (ngModelChange)="handleSelectionChange()">
+                            <option [value]="tomorrowFormatted" selected>{{tomorrowFormatted}}</option>
+                            <option [value]="dayAfterTomorrowFormatted">{{dayAfterTomorrowFormatted}}</option>
                         </select>
+
+
                     </div>
                 </div>
                 <div class="form-group">
@@ -28,7 +31,7 @@
                                 class="fa-solid fa-clock"></i></span>
                         <select class="form-select">
                             <ng-container *ngFor="let hour of hoursRange">
-                                <option [value]="hour" [disabled]="isHourReserved(hour)">
+                                <option [value]="hour" [disabled]="isHourReserved(hour, tomorrowFormatted)">
                                     {{hour}}:00
                                 </option>
                             </ng-container>

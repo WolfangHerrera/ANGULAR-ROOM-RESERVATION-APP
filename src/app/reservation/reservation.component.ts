@@ -17,6 +17,7 @@ interface Reservation {
   styleUrls: ['./reservation.component.scss'],
 })
 export class ReservationComponent implements OnInit {
+  selectedValue = 'tomorrowFormatted';
   hoursRange: number[] = Array.from(
     { length: 22 - 6 },
     (_, index) => index + 6
@@ -78,14 +79,18 @@ export class ReservationComponent implements OnInit {
             itemReservation.time,
             this.user
           )
-          .subscribe((data: any) => {
+          .subscribe(() => {
             window.location.reload();
           });
       }
     });
   }
 
-  isHourReserved(hour: number): boolean {
+  handleSelectionChange() {
+    this.selectedValue;
+  }
+
+  isHourReserved(hour: number, data: Reservation[]): boolean {
     return this.dataReservationsTomorrow.some(
       (item) => parseInt(item.time) === hour
     );
