@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { UserService } from '../service/user.service';
 import { Router } from '@angular/router';
-import { tap, timer } from 'rxjs';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-user',

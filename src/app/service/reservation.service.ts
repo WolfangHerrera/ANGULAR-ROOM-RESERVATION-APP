@@ -8,7 +8,12 @@ import { environment } from 'src/environment/environment';
 export class ReservationService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  makeReservation(reservationData: any) {
+  makeReservation(date: any, time: any, user: any) {
+    const reservationData = {
+      date: date,
+      time: time,
+      user: user,
+    };
     return this.httpClient.post(
       environment.apiReservationMake,
       reservationData
