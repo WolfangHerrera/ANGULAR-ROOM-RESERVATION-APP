@@ -1,4 +1,11 @@
-<div class="m-0 vh-100 row justify-content-evenly align-items-center">
+<div *ngIf="!isLoading" class="m-0 vh-100 row justify-content-evenly align-items-center">
+    <div class="text-center">
+        <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</div>
+<div *ngIf="isLoading" class="m-0 vh-100 row justify-content-evenly align-items-center">
     <div class="col-auto p-3 rounded-3" style="background-color: #121212; color: white;">
         <div class="col-auto p-3">
             <h1 class="text-center">MAKE A RESERVATION</h1>
@@ -19,13 +26,12 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-default"><i
                                 class="fa-solid fa-clock"></i></span>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>8:00</option>
-                            <option value="1">9:00</option>
-                            <option value="1">10:00</option>
-                            <option disabled value="1">11:00</option>
-                            <option value="1">12:00</option>
-                            <option value="1">13:00</option>
+                        <select class="form-select">
+                            <ng-container *ngFor="let hour of hoursRange">
+                                <option [value]="hour" [disabled]="isHourReserved(hour)">
+                                    {{hour}}:00
+                                </option>
+                            </ng-container>
                         </select>
                     </div>
                 </div>

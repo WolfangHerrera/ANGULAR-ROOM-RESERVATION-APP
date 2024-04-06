@@ -17,9 +17,15 @@ interface Reservation {
   styleUrls: ['./reservation.component.scss'],
 })
 export class ReservationComponent implements OnInit {
+  hoursRange: number[] = Array.from(
+    { length: 22 - 6 },
+    (_, index) => index + 6
+  );
+  isLoading = false;
   user = '';
   dataUserReservation: Reservation[] = [];
-  dataReservations = [];
+  dataReservationsTomorrow: Reservation[] = [];
+  dataReservationsAfterTomorrow: Reservation[] = [];
   tomorrow = new Date();
   tomorrowFormatted: any;
   dayAfterTomorrow = new Date();
@@ -29,7 +35,9 @@ export class ReservationComponent implements OnInit {
     if (this.user) {
       this.request.getReservation(this.user).subscribe((data: any) => {
         this.dataUserReservation = data[0];
-        this.dataReservations = data[1];
+        this.dataReservationsTomorrow = data[1];
+        this.dataReservationsAfterTomorrow = data[2];
+        this.isLoading = true;
       });
     }
   }
@@ -71,10 +79,15 @@ export class ReservationComponent implements OnInit {
             this.user
           )
           .subscribe((data: any) => {
-            console.log(data);
+            window.location.reload();
           });
       }
     });
-    console.log(this.dataUserReservation);
+  }
+
+  isHourReserved(hour: number): boolean {
+    return this.dataReservationsTomorrow.some(
+      (item) => parseInt(item.time) === hour
+    );
   }
 }
