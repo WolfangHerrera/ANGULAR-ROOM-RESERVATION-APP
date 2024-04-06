@@ -2,13 +2,13 @@
     <div class="col-auto p-3 rounded-3" style="background-color: #121212; color: white;">
         <div class="col-auto p-3">
             <h1 class="text-center">ROOM RESERVATION APP</h1>
-            <form class="pt-3">
+            <form class="pt-3" [formGroup]="userForm">
                 <div class="form-group">
-                    <label for="emailUser">EMAIL:</label>
+                    <label for="user">EMAIL:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-default"><i
                                 class="fa-solid fa-envelope"></i></span>
-                        <input id="emailUser" formControlName="emailUser" type="email" class="form-control"
+                        <input id="user" formControlName="user" type="user" class="form-control"
                             aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="d-grid text-center py-3">
-                    <button class="btn btn-primary btn-lg">LOGIN</button>
+                    <button (click)="onSubmitLogin()" class="btn btn-primary btn-lg">LOGIN</button>
                 </div>
                 <div class="container text-center">
                     <div class="row">
@@ -30,7 +30,7 @@
                             <h6 class="text-start">NEED AN ACCOUNT?</h6>
                         </div>
                         <div class="col">
-                            <a class="text-end">
+                            <a (click)="onSubmitRegister()" class="text-end">
                                 <h6>REGISTER</h6>
                             </a>
                         </div>
