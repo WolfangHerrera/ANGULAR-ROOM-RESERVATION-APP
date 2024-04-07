@@ -5,74 +5,71 @@
         </div>
     </div>
 </div>
-<div *ngIf="isLoading" class="m-0 vh-100 row justify-content-evenly align-items-center">
-    <div class="col-auto p-3 rounded-3" style="background-color: #121212; color: white;">
-        <div class="col-auto p-3">
-            <h1 class="text-center">MAKE A RESERVATION</h1>
-            <form class="pt-3">
-                <div class="form-group">
-                    <label for="emailUser">DATE:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default"><i
-                                class="fa-solid fa-calendar-days"></i></span>
-                        <select class="form-select" aria-label="" (change)="handleSelectionChange($event)">
-                            <option selected [value]="tomorrowFormatted">{{ tomorrowFormatted }} (TOMORROW)</option>
-                            <option [value]="dayAfterTomorrowFormatted">{{ dayAfterTomorrowFormatted }}</option>
-                        </select>
-
-
-
+<div class="d-block">
+    <app-header></app-header>
+    <div class="m-0 row justify-content-evenly align-items-center" style="height: calc(100vh - 70px);">
+        <div class="col-auto p-3 rounded-3" style="background-color: #121212; color: white; min-height: 380px;">
+            <div class="col-auto p-3">
+                <h1 class="text-center">MAKE A RESERVATION</h1>
+                <form class="pt-3">
+                    <div class="form-group">
+                        <label for="emailUser">DATE:</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                    class="fa-solid fa-calendar-days"></i></span>
+                            <select class="form-select" aria-label="" (change)="handleSelectionChange($event)">
+                                <option selected [value]="tomorrowFormatted">{{ tomorrowFormatted }} (TOMORROW)</option>
+                                <option [value]="dayAfterTomorrowFormatted">{{ dayAfterTomorrowFormatted }}</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="passwordUser">TIME:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default"><i
-                                class="fa-solid fa-clock"></i></span>
-                        <select class="form-select" name="selectedHour" (change)="handleSelectionTime($event)">
-                            <ng-container *ngFor="let hour of hoursRange">
-                                <option [value]="hour.toString()" [disabled]="isHourReserved(hour.toString())">
-                                    {{ hour }}:00
-                                </option>
-                            </ng-container>
-                        </select>
-
-
-
+                    <div class="form-group">
+                        <label for="passwordUser">TIME:</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                    class="fa-solid fa-clock"></i></span>
+                            <select class="form-select" name="selectedHour" (change)="handleSelectionTime($event)">
+                                <ng-container *ngFor="let hour of hoursRange">
+                                    <option [value]="hour.toString()" [disabled]="isHourReserved(hour.toString())">
+                                        {{ hour }}:00
+                                    </option>
+                                </ng-container>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="d-grid text-center py-3">
-                    <button [disabled]="disableButtonMakeReservation()" (click)="makeReservation()"
-                        class="btn btn-primary btn-lg">SAVE
-                        RESERVATION</button>
-                </div>
-            </form>
+                    <div class="d-grid text-center py-3">
+                        <button [disabled]="disableButtonMakeReservation()" (click)="makeReservation()"
+                            class="btn btn-primary btn-lg">SAVE
+                            RESERVATION</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-    <div class="col-auto p-3 rounded-3" style="background-color: #121212;">
-        <div class="col-auto p-3" style="color: white;">
-            <h1 class="text-center">MANAGE YOUR RESERVATION</h1>
-            <table class="table table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">DATE</th>
-                        <th scope="col">TIME</th>
-                        <th scope="col">STATUS</th>
-                        <th scope="col">EDIT</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ng-container *ngFor="let item of dataUserReservation">
+        <div class="col-auto p-3 rounded-3" style="background-color: #121212; min-height: 380px;">
+            <div class="col-auto p-3" style="color: white;">
+                <h1 class="text-center">MANAGE YOUR RESERVATION</h1>
+                <table class="table table-dark">
+                    <thead>
                         <tr>
-                            <td>{{item.date}}</td>
-                            <td>{{item.time}}:00</td>
-                            <td>{{item.status.toUpperCase()}}</td>
-                            <td><button (click)="cancelReservation(item)" [disabled]="item.status === 'canceled'"
-                                    type="button" class="btn btn-sm btn-outline-danger">CANCEL</button></td>
+                            <th scope="col">DATE</th>
+                            <th scope="col">TIME</th>
+                            <th scope="col">STATUS</th>
+                            <th scope="col">EDIT</th>
                         </tr>
-                    </ng-container>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let item of dataUserReservation">
+                            <tr>
+                                <td>{{item.date}}</td>
+                                <td>{{item.time}}:00</td>
+                                <td>{{item.status.toUpperCase()}}</td>
+                                <td><button (click)="cancelReservation(item)" [disabled]="item.status === 'canceled'"
+                                        type="button" class="btn btn-sm btn-outline-danger">CANCEL</button></td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
