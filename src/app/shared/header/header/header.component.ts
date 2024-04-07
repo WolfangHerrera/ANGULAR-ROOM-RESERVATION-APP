@@ -15,6 +15,6 @@ export class HeaderComponent {
 
   logOut() {
     localStorage.removeItem('user');
-    this.router.navigate(['/reservation']);
+    this.router.navigate(['/']);
   }
 }
