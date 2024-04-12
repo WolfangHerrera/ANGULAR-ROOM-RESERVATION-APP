@@ -8,7 +8,7 @@
 
 ---
 
-![](docs/PDF-README.gif)
+![](docs/ROOM-README.gif)
 
 ---
 
