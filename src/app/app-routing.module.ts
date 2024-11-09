@@ -6,20 +6,14 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: AppComponent,
-    children: [
-      {
         path: 'reservation',
         component: ReservationComponent,
-      },
-      { path: 'user', component: UserComponent },
-      { path: '', redirectTo: 'user', pathMatch: 'full' },
-      {
-        path: '**',
-        redirectTo: 'user',
-      },
-    ],
+  },
+  { path: 'user', component: UserComponent },
+  { path: '', redirectTo: 'user', pathMatch: 'full' },
+  {
+    path: '**',
+    redirectTo: 'user',
   },
 ];
 @NgModule({
