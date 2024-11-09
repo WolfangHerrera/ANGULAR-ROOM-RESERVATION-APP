@@ -10,7 +10,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './shared/header/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, UserComponent, ReservationComponent, HeaderComponent],
+  declarations: [
+    AppComponent,
+    UserComponent,
+    ReservationComponent,
+    HeaderComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -18,7 +23,7 @@ import { HeaderComponent } from './shared/header/header/header.component';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  exports: [AppComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
