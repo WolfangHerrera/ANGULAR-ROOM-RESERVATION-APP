@@ -11,31 +11,23 @@ module.exports = withModuleFederationPlugin({
   shared: {
     "@angular/core": {
       singleton: true,
-      strictVersion: false,
+      strictVersion: true,
       requiredVersion: "auto",
     },
     "@angular/common": {
       singleton: true,
-      strictVersion: false,
+      strictVersion: true,
       requiredVersion: "auto",
     },
     "@angular/common/http": {
       singleton: true,
-      strictVersion: false,
+      strictVersion: true,
       requiredVersion: "auto",
     },
     "@angular/router": {
       singleton: true,
-      strictVersion: false,
+      strictVersion: true,
       requiredVersion: "auto",
-    },
-    "date-fns": {
-      singleton: true,
-      requiredVersion: "3.6.0",
-    },
-    sweetalert2: {
-      singleton: true,
-      requiredVersion: "11.10.7",
     },
   },
 });
