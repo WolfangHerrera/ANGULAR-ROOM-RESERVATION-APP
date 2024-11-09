@@ -1,4 +1,4 @@
-<div *ngIf="!isLoading" class="m-0 vh-100 row justify-content-evenly align-items-center">
+<div *ngIf="isLoading" class="m-0 vh-100 row justify-content-evenly align-items-center">
     <div class="text-center">
         <div class="spinner-border text-light" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -6,8 +6,7 @@
     </div>
 </div>
 <div class="d-block">
-    <app-header></app-header>
-    <div class="m-0 row justify-content-evenly align-items-center" style="height: calc(100vh - 70px);">
+    <div class="m-0 row justify-content-evenly align-items-center" style="height: calc(100vh - 16vh);">
         <div class="col-auto p-3 rounded-3" style="background-color: #121212; color: white; min-height: 380px;">
             <div class="col-auto p-3">
                 <h1 class="text-center">MAKE A RESERVATION</h1>
@@ -38,8 +37,8 @@
                         </div>
                     </div>
                     <div class="d-grid text-center py-3">
-                        <button [disabled]="disableButtonMakeReservation()" (click)="makeReservation()"
-                            class="btn btn-primary btn-lg">SAVE
+                        <button style="background-color: #5c469c;" [disabled]="disableButtonMakeReservation()"
+                            (click)="makeReservation()" class="btn text-white btn-lg">SAVE
                             RESERVATION</button>
                     </div>
                 </form>
@@ -72,4 +71,5 @@
             </div>
         </div>
     </div>
+    <app-panel></app-panel>
 </div>

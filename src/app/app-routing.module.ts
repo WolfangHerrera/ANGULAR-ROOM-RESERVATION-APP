@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserComponent } from './user/user.component';
-import { ReservationComponent } from './reservation/reservation.component';
-import { authGuard } from './auth/auth.guard';
+import { authGuard } from './core/auth/auth.guard';
+import { ReservationComponent } from './core/reservation/reservation.component';
+import { UserComponent } from './core/user/user.component';
 
 const routes: Routes = [
   {
     path: 'reservation',
     component: ReservationComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
   },
   { path: 'user', component: UserComponent },
-  { path: '', redirectTo: 'user', pathMatch: 'full' },
+  { path: '', redirectTo: 'reservation', pathMatch: 'full' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

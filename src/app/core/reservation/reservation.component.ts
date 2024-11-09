@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ReservationService } from '../service/reservation.service';
 import { format, addDays } from 'date-fns';
 import Swal from 'sweetalert2';
 import { timer } from 'rxjs';
+import { ReservationService } from 'src/app/service/reservation.service';
 
 interface Reservation {
   date: string;
