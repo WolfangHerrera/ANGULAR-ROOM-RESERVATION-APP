@@ -1,4 +1,4 @@
-<div *ngIf="!isLoading" class="m-0 vh-100 row justify-content-evenly align-items-center">
+<div *ngIf="isLoading" class="m-0 vh-100 row justify-content-evenly align-items-center">
     <div class="text-center">
         <div class="spinner-border text-light" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -38,8 +38,8 @@
                         </div>
                     </div>
                     <div class="d-grid text-center py-3">
-                        <button [disabled]="disableButtonMakeReservation()" (click)="makeReservation()"
-                            class="btn btn-primary btn-lg">SAVE
+                        <button style="background-color: #5c469c;" [disabled]="disableButtonMakeReservation()"
+                            (click)="makeReservation()" class="btn text-white btn-lg">SAVE
                             RESERVATION</button>
                     </div>
                 </form>

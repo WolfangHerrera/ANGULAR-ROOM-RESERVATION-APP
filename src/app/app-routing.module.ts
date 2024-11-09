@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: 'reservation',
     component: ReservationComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
   },
   { path: 'user', component: UserComponent },
   { path: '', redirectTo: 'user', pathMatch: 'full' },
