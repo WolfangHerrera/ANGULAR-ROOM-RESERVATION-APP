@@ -2,19 +2,28 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user/user.component';
 import { ReservationComponent } from './reservation/reservation.component';
-import { authGuard } from './auth/auth.guard';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
-    path: 'reservation',
-    component: ReservationComponent,
-    canActivate: [authGuard],
+    path: '',
+    component: AppComponent,
+    children: [
+      {
+        path: 'reservation',
+        component: ReservationComponent,
+      },
+      { path: 'user', component: UserComponent },
+      { path: '', redirectTo: 'user', pathMatch: 'full' },
+      {
+        path: '**',
+        redirectTo: 'user',
+      },
+    ],
   },
-  { path: 'user', component: UserComponent },
-  { path: '', redirectTo: 'user', pathMatch: 'full' },
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
