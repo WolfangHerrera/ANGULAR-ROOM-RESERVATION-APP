@@ -78,9 +78,9 @@ export class ReservationComponent implements OnInit {
       .makeReservation(date, this.selectedHour, this.user)
       .subscribe((data: any) => {});
     Swal.fire({
-      title: 'GOOD JOB!',
-      text: 'YOU HAVE REGISTERED SUCCESSFULLY.',
-      icon: 'success',
+      title: 'OOPS!',
+      text: 'IM SORRY, IM WORKING TO DEPLOY THIS FUNCTIONALITY.',
+      icon: 'error',
       timer: 2000,
     });
     timer(2000).subscribe(() => {
