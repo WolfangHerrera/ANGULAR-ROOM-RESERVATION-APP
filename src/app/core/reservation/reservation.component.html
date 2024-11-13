@@ -5,9 +5,9 @@
         </div>
     </div>
 </div>
-<div class="d-block">
+<div *ngIf="!isLoading" class="d-block">
     <div class="m-0 row justify-content-evenly align-items-center" style="height: calc(100vh - 16vh);">
-        <div class="col-auto p-3 rounded-3" style="background-color: #121212; color: white; min-height: 380px;">
+        <div class="col-auto my-3 p-3 rounded-3" style="background-color: #121212; color: white; min-height: 380px;">
             <div class="col-auto p-3">
                 <h1 class="text-center">MAKE A RESERVATION</h1>
                 <form class="pt-3">
@@ -44,7 +44,7 @@
                 </form>
             </div>
         </div>
-        <div class="col-auto p-3 rounded-3" style="background-color: #121212; min-height: 380px;">
+        <div class="col-auto my-3 p-3 rounded-3" style="background-color: #121212; min-height: 380px;">
             <div class="col-auto p-3" style="color: white;">
                 <h1 class="text-center">MANAGE YOUR RESERVATION</h1>
                 <table class="table table-dark">
